@@ -2,6 +2,8 @@ class ListsController < ApplicationController
 
   def index
     @lists = List.all
+    name = params[:name]
+    @lists = Quote.search(name)
     json_response(@lists)
   end
 
@@ -22,18 +24,17 @@ class ListsController < ApplicationController
       message: "Your business has successfully been updated."
     }
   end
-end
+
   def destroy
     @list = List.find(params[:id])
     if @list.destroy
      render status: 200, json: {
-      message: "Your business has successfully been destroyed."
+      message: "Your business has successfully been destroyed."}
   end
-
+end
   private
 
-
-  def list_params
+def list_params
     params.permit(:name, :address, :description)
   end
 end
