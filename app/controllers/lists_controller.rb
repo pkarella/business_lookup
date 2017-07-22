@@ -2,8 +2,6 @@ class ListsController < ApplicationController
 
   def index
     @lists = List.all
-    name = params[:name]
-    @lists = Quote.search(name)
     json_response(@lists)
   end
 
@@ -11,6 +9,22 @@ class ListsController < ApplicationController
     @list = List.find(params[:id])
     json_response(@list)
   end
+  
+  def search
+    name= params[:name]
+    @search_results ==[];
+    render status: 404, json:{
+      message: 'Not matching'
+    }
+  else
+    json_response(@search_results)
+  end
+end
+
+def random
+   @list = List.random
+   json_response(@list)
+ end
 
   def create
     @list = List.create!(list_params)

@@ -3,5 +3,12 @@ class List < ApplicationRecord
 validates :address, :presence => true
 validates :description, :presence => true
 
-scope :search, -> (name_parameter) { where("name like ?", "%#{name_parameter}%")}
+def self.search_by_name(name)
+   List.where('lower(name) = ?', name.downcase)
+ end
+
+ def self.random
+   List.order('RANDOM()').first
+ end
+
 end
