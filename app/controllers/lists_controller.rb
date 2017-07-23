@@ -1,35 +1,33 @@
 class ListsController < ApplicationController
 
   def index
-    @lists = List.all
-    json_response(@lists)
+    if params[:name]
+      @lists = List.search(params[:name])
+    elsif
+      params[:random_list]
+      @lists = List.random_list
+    else
+      @lists = List.all
+    end
+      json_response(@lists)
   end
 
   def show
     @list = List.find(params[:id])
     json_response(@list)
   end
-  
-  def search
-    name= params[:name]
-    @search_results ==[];
-    render status: 404, json:{
-      message: 'Not matching'
-    }
-  else
-    json_response(@search_results)
-  end
-end
 
-def random
-   @list = List.random
-   json_response(@list)
- end
 
   def create
-    @list = List.create!(list_params)
+    @list = List.new(list_params)
+    if @list.save
     json_response(@list, :created)
+  else
+    render status: 422, json: {
+      message: "Creation of list did not meet required validations"
+    }
   end
+end
 
   def update
     @list = List.find(params[:id])

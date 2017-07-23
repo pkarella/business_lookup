@@ -1,24 +1,75 @@
-# README
+# _Business_Lookup_
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+#### By _**Peter Karellas*_
 
-Things you may want to cover:
+## Description
 
-* Ruby version
+API app that allows returns information about local businesses
 
-* System dependencies
+## Functionality
+*_Endpoints for GET (all and by id), POST, PUT and DELETE._*
 
-* Configuration
+*_A RANDOM endpoint that randomly returns a business name._*
 
-* Database creation
+*_A second custom endpoint that searches a specific name._*
 
-* Database initialization
+*_Serialization of parameter (name, address, and description)_*
 
-* How to run the test suite
+*_Randomized data with Faker._*
 
-* Services (job queues, cache servers, search engines, etc.)
+## Installation
+------------
+*_git clone https://github.com/pkarella/business_lookup.git_*
+*_cd business_lookup_*
 
-* Deployment instructions
+Install required gems:
+*_bundle install_*
 
-* ...
+Start postgres:
+*_postgress_*
+
+Create databases:
+*_rails db:create_*
+*_rails db:migrate_*
+*_rails db:seed_*
+
+Start the webserver:
+*_rails s_*
+
+## Using this app
+
+1. Open the postman app
+
+* To see all of the business names descriptions and addresses.
+  * Select 'GET' method and copy http://localhost:3000/lists
+
+
+* To see a specific listed business by id  
+  * Select 'GET' method and copy http://localhost:3000/lists/ followed by the id number associated with the list
+
+* To delete a specific listed business by id  
+  * Select 'DELETE' method and copy http://localhost:3000/lists/ followed by the id number associated with the list
+
+* To update a specific business by id  
+  * Select 'PATCH' method and copy http://localhost:3000/lists/ followed by the id number associated with the business then change the value in the body portion of postman under parameter.
+
+* To see a specific business by name.
+  * Select 'GET' method and copy http://localhost:3000/lists?name= followed by the name of business you want to see
+
+
+* To see a random business
+  * Select 'GET' method and copy http://localhost:3000/lists?random_list=
+
+## Known Bugs
+
+_NA_
+
+## Technologies Used
+
+_Ruby on Rails, HTML, CSS_
+
+### License
+
+*MIT*
+
+Copyright (c) 2017 **_Peter Karellas_**

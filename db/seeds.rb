@@ -7,7 +7,7 @@ class Seed
 
   def generate_lists
     20.times do |i|
-
+      name = 
       list = List.create!(
         name: Faker::Book.author,
         address: Faker::Address.street_address,
